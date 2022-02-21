@@ -9,7 +9,7 @@ node("linux"){
         }
         }
         else{
-            sh 'ansible-playbook site.yml -i inventory/prod/hosts.yml'
+            sh 'ansible-playbook playbook/site.yml -i playbook/prod/hosts.yml'
         }
     }
 }
