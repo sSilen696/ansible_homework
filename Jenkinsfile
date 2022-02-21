@@ -4,11 +4,12 @@ node("linux"){
     }
 
     stage("Run playbook"){
+        sh 'cd playbook'
         if (params.run_prod){
-            sh 'ansible-playbook playbook/site.yml -i playbook/inventory/prod/hosts.yml -check --diff'
+            sh 'ansible-playbook site.yml -i inventory/prod/hosts.yml -check --diff'
         }
         else{
-            sh 'ansible-playbook playbook/site.yml -i playbook/inventory/prod/hosts.yml'
+            sh 'ansible-playbook site.yml -i inventory/prod/hosts.yml'
         }
 
     }
