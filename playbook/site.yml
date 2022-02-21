@@ -1,7 +1,8 @@
 ---
 
-- hosts: elasticsearch
-  role:
+- name: Install ELK
+  hosts: elasticsearch
+  roles:
     - elastic
     - kibana-role
     - filebeat-role
