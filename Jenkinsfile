@@ -7,7 +7,7 @@ node("linux"){
     }
     stage("Run playbook"){
         if (secret_check){
-            sh 'ansible-playbook playbook/site.yml -i playbook/inventory/prod.yml'
+            sh 'ansible-playbook playbook/site.yml -i playbook/inventory/prod/hosts.yml'
         }
         else{
             echo 'need more action'
