@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('download repo') {
             steps {
-                git credentialsId: 'git', url: 'git@github.com:sSilen696/ansible_homework.git'
+                git branch: 'Declarative_Pipeline', 'credentialsId: 'git', url: 'git@github.com:sSilen696/ansible_homework.git'
             }
         }
         stage('install requirements') {
