@@ -1,23 +1,17 @@
-pipeline {
-    agent {
-        label 'linux'
+node("linux"){
+    stage("Git checkout"){
+        git branch: 'main', credentialsId: 'git', url: 'git@github.com:netology-code/mnt-homeworks-ansible.git'
     }
-    stages {
-        stage('Checkout') {
-            steps{
-                git branch: 'main', credentialsId: '7107e6e5-6511-44ab-903a-387cb7a5c266', url: 'git@github.com:netology-code/mnt-homeworks-ansible.git'
-            }
+    stage("Sample define secret_check"){
+        secret_check=true
+    }
+    stage("Run playbook"){
+        if (secret_check){
+            sh 'ansible-playbook site.yml -i inventory/prod.yml'
         }
-        stage('Install molecule') {
-            steps{
-                sh 'pip3 install -r test-requirements.txt'
-                sh "echo =============="
-            }
+        else{
+            echo 'need more action'
         }
-        stage('Run Molecule'){
-            steps{
-                sh 'molecule test'
-            }
-        }
+
     }
 }
