@@ -1,23 +1,22 @@
 pipeline {
-    agent {
-        label 'linux'
-    }
+    agent any
+
     stages {
-        stage('Checkout') {
-            steps{
-                git branch: 'main', credentialsId: '7107e6e5-6511-44ab-903a-387cb7a5c266', url: 'git@github.com:netology-code/mnt-homeworks-ansible.git'
+        stage('download repo') {
+            steps {
+                git credentialsId: 'git', url: 'git@github.com:sSilen696/ansible_homework.git'
             }
         }
-        stage('Install molecule') {
-            steps{
-                sh 'pip3 install -r test-requirements.txt'
-                sh "echo =============="
+        stage('install requirements') {
+            steps {
+                sh 'pip install -r test-requirements.txt'
             }
         }
-        stage('Run Molecule'){
-            steps{
+        stage('molecule test') {
+            steps {
                 sh 'molecule test'
+
             }
-        }
+            }
     }
 }
