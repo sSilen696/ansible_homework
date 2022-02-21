@@ -1,6 +1,6 @@
 node("linux"){
     stage("Git checkout"){
-        git branch: 'main', credentialsId: 'git', url: 'git@github.com:netology-code/mnt-homeworks-ansible.git'
+        git branch: 'main', credentialsId: 'git', url: 'git@github.com:sSilen696/ansible_homework.git'
     }
     stage("Sample define secret_check"){
         secret_check=true
