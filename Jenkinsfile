@@ -17,6 +17,6 @@ pipeline {
                 sh 'molecule test'
 
             }
-            }
+        }
     }
 }
